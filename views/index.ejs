@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Amusify - Web Player: Music For Everyone</title>
+    <link rel = "icon" href =  "../images/image-removebg-preview.png" type = "image/x-icon"> 
+    <link rel="stylesheet" href="../stylesheets/style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div id="main">
+      <div class="left">
+        <div id="left">
+
+          <button>
+            <i class="ri-home-fill"></i>
+            <a href="/">Home</a>
+          </button>
+          <button>
+            <i class="ri-search-fill"></i>
+            <a id="search" href="/search">Search</a>
+          </button>
+        </div>
+      </div>
+      <div class="right">
+        <div id="right-nav">
+          <div id="part1">
+            <i class="ri-arrow-left-s-line"></i>
+            <i class="ri-arrow-right-s-line"></i>
+          </div>
+          <div id="part2">
+            <button>Explore Premium</button>
+            <i class="ri-notification-4-line"></i>
+            <i class="ri-team-line"></i>
+            <i class="ri-user-line"></i>
+          </div>
+        </div>
+        <div id="heading">
+          <h2>Made for you</h2>
+          <h5>Show all</h5>
+        </div>
+        <div class="music">
+        <% currentUser.playlist[0].songs.forEach(song=>{ %>
+
+        <div class="right-con">
+          <div class="song" onclick="songCardClicked('<%=song.fileName%>','<%=song.title%>','/poster/<%=song.poster%>','<%=song.artist%>')">
+            <div class="playbutton">
+              <button><i class="ri-play-fill"></i></button>
+            </div>
+            <img src="/poster/<%=song.poster%>" alt="" />
+            <div class="text">
+              <h4><%=song.title%></h4>
+              <p><%=song.artist%></p>
+              <p><%=song.album%></p>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+      </div>            
+      <div id="free"></div>
+      
+      
+      
+    </div>
+    <div id="player">
+      <div id="player-left">
+        <div class="left-song">
+          <img id="img" src="" alt="" />
+          <div class="text1">
+            <h5 id="h5">SongName</h5>
+            <h6 id="h6">Artist</h6>
+          </div>
+          <i id="player-left-like" class="ri-heart-fill"></i>
+        </div>
+      </div>
+      <div id="player-mid">
+        <audio src="" controls></audio>
+      </div>
+      <div id="player-right"></div>
+      </div>
+    </div>
+
+    <script>
+      var flag=0;
+      var like=document.querySelector('#player-left-like');
+      var title="";
+      var poster="";
+      var artist="";
+
+
+      function songCardClicked(fileName,title,poster,artist){
+        document.querySelector('audio').setAttribute('src',`/stream/${fileName}`);
+        document.querySelector('audio').play();
+        title=title;
+        poster=poster;
+        artist=artist;
+        document.querySelector("#h5").innerHTML=title;
+        document.querySelector("#h6").innerHTML=artist;
+        document.querySelector("#img").src=poster;
+      }
+      
+
+      like.addEventListener('click',function(){
+        if(flag==0){
+        like.style.color="#1DB954";
+        flag=1;
+        like.style.scale=2;
+        setInterval(() => {
+          like.style.scale=1;
+        }, 800);
+      }
+      else{
+        like.style.color="#fff";
+        flag=0;
+      }
+      })
+
+
+
+
+    </script>
+
+  </body>
+</html>

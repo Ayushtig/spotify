@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Amusify - Web Player: Music For Everyone</title>
+    <link rel = "icon" href =  "../images/image-removebg-preview.png" type = "image/x-icon"> 
+   <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+
+    <form action="/uploadMusic" method="post" enctype="multipart/form-data">
+      <input type="file" name="song" multiple>
+      <input type="submit" value="submit">
+    </form>
+
+
+    <audio src="/listenMusic" controls></audio>
+
+  </body>
+</html>
